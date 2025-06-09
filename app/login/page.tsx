@@ -1,152 +1,33 @@
 "use client"
 
-import { useState, useEffect, Suspense } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useAuth } from "@/lib/firebase/authContext";
-import { toast } from "sonner";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import Link from "next/link"
 
-// Separate client component for the login form
-function LoginForm() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const redirect = searchParams.get('redirect') || '/dashboard';
-  const { signIn, signUp, loading, user } = useAuth();
-
-  // Redirect if already logged in
-  useEffect(() => {
-    if (user && !loading) {
-      console.log('User already logged in, redirecting to:', redirect);
-      router.push(redirect);
-    }
-  }, [user, loading, redirect, router]);
-
-  // Login form state
-  const [loginEmail, setLoginEmail] = useState("");
-  const [loginPassword, setLoginPassword] = useState("");
-
-  // Register form state
-  const [registerEmail, setRegisterEmail] = useState("");
-  const [registerPassword, setRegisterPassword] = useState("");
-
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      console.log('Handling login submission...');
-      await signIn(loginEmail, loginPassword);
-      console.log('Login successful, redirecting to:', redirect);
-      router.push(redirect);
-    } catch (error: any) {
-      console.error('Login error:', error);
-      toast.error(error.message || "Failed to login");
-    }
-  };
-
-  const handleRegister = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      console.log('Handling registration submission...');
-      await signUp(registerEmail, registerPassword);
-      console.log('Registration successful, redirecting to:', redirect);
-      router.push(redirect);
-    } catch (error: any) {
-      console.error('Registration error:', error);
-      toast.error(error.message || "Failed to register");
-    }
-  };
-
+export default function LoginPage() {
   return (
     <div className="container flex items-center justify-center min-h-screen py-10">
-      <Card className="w-full max-w-md">
+      <Card className="w-full max-w-md text-center">
         <CardHeader>
-          <CardTitle>Welcome Back</CardTitle>
-          <CardDescription>Sign in to your account</CardDescription>
+          <CardTitle className="text-3xl">Coming Soon</CardTitle>
+          <CardDescription className="text-lg mt-2">
+            Our login system is currently under development
+          </CardDescription>
         </CardHeader>
-        <CardContent>
-          <Tabs defaultValue="login">
-            <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="login">Login</TabsTrigger>
-              <TabsTrigger value="register">Register</TabsTrigger>
-            </TabsList>
-
-            <TabsContent value="login">
-              <form onSubmit={handleLogin} className="space-y-4 mt-4">
-                <div className="space-y-2">
-                  <Label htmlFor="login-email">Email</Label>
-                  <Input
-                    id="login-email"
-                    type="email"
-                    value={loginEmail}
-                    onChange={(e) => setLoginEmail(e.target.value)}
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="login-password">Password</Label>
-                  <Input
-                    id="login-password"
-                    type="password"
-                    value={loginPassword}
-                    onChange={(e) => setLoginPassword(e.target.value)}
-                    required
-                  />
-                </div>
-                <Button type="submit" className="w-full" disabled={loading}>
-                  {loading ? "Loading..." : "Login"}
-                </Button>
-              </form>
-            </TabsContent>
-
-            <TabsContent value="register">
-              <form onSubmit={handleRegister} className="space-y-4 mt-4">
-                <div className="space-y-2">
-                  <Label htmlFor="register-email">Email</Label>
-                  <Input
-                    id="register-email"
-                    type="email"
-                    value={registerEmail}
-                    onChange={(e) => setRegisterEmail(e.target.value)}
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="register-password">Password</Label>
-                  <Input
-                    id="register-password"
-                    type="password"
-                    value={registerPassword}
-                    onChange={(e) => setRegisterPassword(e.target.value)}
-                    required
-                  />
-                </div>
-                <Button type="submit" className="w-full" disabled={loading}>
-                  {loading ? "Loading..." : "Register"}
-                </Button>
-              </form>
-            </TabsContent>
-          </Tabs>
+        <CardContent className="space-y-6">
+          <div className="p-6 rounded-lg bg-muted/50">
+            <p className="text-muted-foreground">
+              We're working hard to bring you a secure and seamless login experience. 
+              Check back soon for updates!
+            </p>
+          </div>
+          <Link href="/" className="block">
+            <Button className="w-full" variant="outline">
+              Return to Home
+            </Button>
+          </Link>
         </CardContent>
       </Card>
     </div>
-  );
-}
-
-// Main page component with Suspense boundary
-export default function LoginPage() {
-  return (
-    <Suspense fallback={
-      <div className="flex min-h-screen items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900 mx-auto mb-4"></div>
-          <p>Loading...</p>
-        </div>
-      </div>
-    }>
-      <LoginForm />
-    </Suspense>
-  );
+  )
 }

@@ -3,7 +3,9 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
-import { MessageCircle, Mail, Clock, HelpCircle } from "lucide-react"
+import { MessageCircle, Mail, Clock, HelpCircle, ExternalLink } from "lucide-react"
+import { FaDiscord } from "react-icons/fa"
+import Link from "next/link"
 
 export default function SupportPage() {
   return (
@@ -19,9 +21,34 @@ export default function SupportPage() {
             <div className="flex flex-col items-center justify-center text-center mb-12">
               <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Support Center</h1>
               <p className="mt-4 text-muted-foreground max-w-[700px]">
-                Get help with your Radius software. Our support team is here to assist you 24/7.
+                Get help with your Radius software. Our support team is here to assist you.
               </p>
             </div>
+
+            {/* Discord Banner */}
+            <Card className="border-muted/50 bg-card/50 backdrop-blur-sm hover:bg-card/80 transition-colors mb-8">
+              <CardContent className="pt-6">
+                <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+                  <div className="flex items-center gap-4">
+                    <FaDiscord className="h-12 w-12 text-[#5865F2]" />
+                    <div>
+                      <h3 className="text-xl font-semibold">Join Our Discord Community</h3>
+                      <p className="text-muted-foreground">Get instant support and connect with other users</p>
+                    </div>
+                  </div>
+                  <Link 
+                    href="https://discord.gg/radius" 
+                    target="_blank"
+                    rel="noopener noreferrer" 
+                  >
+                    <Button className="bg-[#5865F2] hover:bg-[#4752C4] flex items-center gap-2">
+                      Join Discord
+                      <ExternalLink className="h-4 w-4" />
+                    </Button>
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {/* Contact Methods */}
@@ -29,13 +56,26 @@ export default function SupportPage() {
                 <Card className="border-muted/50 bg-card/50 backdrop-blur-sm hover:bg-card/80 transition-colors">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
-                      <MessageCircle className="h-5 w-5" />
-                      Live Chat
+                      <FaDiscord className="h-5 w-5" />
+                      Discord Support
                     </CardTitle>
-                    <CardDescription>Get instant help from our support team</CardDescription>
+                    <CardDescription>Get instant help from our community</CardDescription>
                   </CardHeader>
-                  <CardContent>
-                    <Button className="w-full">Start Live Chat</Button>
+                  <CardContent className="space-y-2">
+                    <p className="text-sm text-muted-foreground">Join our Discord server for:</p>
+                    <ul className="text-sm text-muted-foreground list-disc list-inside space-y-1">
+                      <li>24/7 Community Support</li>
+                      <li>Direct Access to Staff</li>
+                      <li>Updates & Announcements</li>
+                      <li>Tips & Tricks</li>
+                    </ul>
+                    <Link 
+                      href="https://discord.gg/radius" 
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Button variant="outline" className="w-full mt-2">Join Server</Button>
+                    </Link>
                   </CardContent>
                 </Card>
 
@@ -45,10 +85,11 @@ export default function SupportPage() {
                       <Mail className="h-5 w-5" />
                       Email Support
                     </CardTitle>
-                    <CardDescription>Send us a detailed message</CardDescription>
+                    <CardDescription>For non-urgent inquiries</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-sm text-muted-foreground">support@radius.com</p>
+                    <p className="text-sm text-muted-foreground mb-2">support@radius.com</p>
+                    <p className="text-xs text-muted-foreground">For faster support, please use our Discord server.</p>
                   </CardContent>
                 </Card>
 
@@ -61,17 +102,20 @@ export default function SupportPage() {
                   </CardHeader>
                   <CardContent className="space-y-2">
                     <div className="flex justify-between">
-                      <span className="text-sm">Live Chat:</span>
-                      <span className="text-sm font-medium">Instant</span>
+                      <span className="text-sm">Discord Support:</span>
+                      <span className="text-sm font-medium text-green-500">{"< 5 minutes"}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-sm">Email:</span>
-                      <span className="text-sm font-medium">{"< 2 hours"}</span>
+                      <span className="text-sm">Email Support:</span>
+                      <span className="text-sm font-medium">{"< 24 hours"}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-sm">Priority Support:</span>
-                      <span className="text-sm font-medium">{"< 30 minutes"}</span>
+                      <span className="text-sm font-medium text-blue-500">{"< 1 hour"}</span>
                     </div>
+                    <p className="text-xs text-muted-foreground mt-2">
+                      * Response times may vary during peak hours
+                    </p>
                   </CardContent>
                 </Card>
               </div>
@@ -81,7 +125,9 @@ export default function SupportPage() {
                 <Card className="border-muted/50 bg-card/50 backdrop-blur-sm hover:bg-card/80 transition-colors">
                   <CardHeader>
                     <CardTitle>Send us a Message</CardTitle>
-                    <CardDescription>Fill out the form below and we'll get back to you as soon as possible</CardDescription>
+                    <CardDescription>
+                      Need help? For fastest support, join our Discord server. Otherwise, fill out this form and we'll get back to you via email.
+                    </CardDescription>
                   </CardHeader>
                   <CardContent>
                     <form className="space-y-4">
@@ -106,6 +152,9 @@ export default function SupportPage() {
                       <Button type="submit" className="w-full">
                         Send Message
                       </Button>
+                      <p className="text-xs text-muted-foreground text-center mt-2">
+                        For urgent support, please use our Discord server for faster response times.
+                      </p>
                     </form>
                   </CardContent>
                 </Card>
@@ -119,7 +168,17 @@ export default function SupportPage() {
           <div className="container">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-4">Frequently Asked Questions</h2>
-              <p className="text-muted-foreground max-w-[700px] mx-auto">Quick answers to common questions</p>
+              <p className="text-muted-foreground max-w-[700px] mx-auto">
+                Quick answers to common questions. Can't find what you're looking for?{" "}
+                <Link 
+                  href="https://discord.gg/radius" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline"
+                >
+                  Ask in our Discord
+                </Link>
+              </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
@@ -133,7 +192,7 @@ export default function SupportPage() {
                 <CardContent>
                   <p className="text-sm text-muted-foreground">
                     After purchase, you'll receive an email with download links and installation instructions. You can also
-                    access downloads from your dashboard.
+                    access downloads from your dashboard. Need help? Join our Discord for instant assistance.
                   </p>
                 </CardContent>
               </Card>
@@ -148,7 +207,7 @@ export default function SupportPage() {
                 <CardContent>
                   <p className="text-sm text-muted-foreground">
                     Yes, our software uses advanced protection methods to remain undetected. We regularly update our
-                    protection systems.
+                    protection systems. For the latest status and updates, check our Discord announcements.
                   </p>
                 </CardContent>
               </Card>
@@ -157,13 +216,13 @@ export default function SupportPage() {
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 text-lg">
                     <HelpCircle className="h-5 w-5" />
-                    What if I get banned?
+                    What if I have technical issues?
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-sm text-muted-foreground">
-                    While our software is designed to be undetectable, we cannot guarantee 100% safety. Use at your own
-                    risk.
+                    Join our Discord server for immediate technical support. Our community managers and support staff are available
+                    24/7 to help resolve any issues you encounter.
                   </p>
                 </CardContent>
               </Card>
@@ -177,7 +236,8 @@ export default function SupportPage() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-sm text-muted-foreground">
-                    We offer a 30-day money-back guarantee for all purchases. Contact support for refund requests.
+                    We offer a 24-hour money-back guarantee for all purchases. Contact our support team on Discord for the fastest
+                    refund processing.
                   </p>
                 </CardContent>
               </Card>
