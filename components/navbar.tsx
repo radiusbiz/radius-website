@@ -15,6 +15,12 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 import { ModeToggle } from "@/components/mode-toggle"
 import { ShoppingCart, User } from "lucide-react"
 
@@ -23,6 +29,7 @@ export function Navbar() {
   const router = useRouter()
 
   const handleLogout = async () => {
+    if (!auth) return
     try {
       await signOut(auth)
       router.push("/") // Redirect to homepage after logout
@@ -134,9 +141,18 @@ export function Navbar() {
               </Button>
             </>
           ) : (
-            <Button asChild size="sm">
-              <Link href="/login">Login</Link>
-            </Button>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button variant="outline" size="sm" disabled className="cursor-not-allowed">
+                    Login
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Coming Soon</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           )}
           <ModeToggle />
         </div>

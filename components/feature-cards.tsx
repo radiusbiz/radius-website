@@ -73,12 +73,7 @@ export function FeatureCards() {
         </div>
 
         {/* Status Indicator */}
-        <div className="flex justify-center">
-          <div className="flex items-center gap-3 px-6 py-3 rounded-full bg-primary/10 border border-primary/20">
-            <CheckCircle className="h-5 w-5 text-primary" />
-            <span className="font-medium">System Status: All Services Operational</span>
-          </div>
-        </div>
+
       </div>
     </section>
   )
