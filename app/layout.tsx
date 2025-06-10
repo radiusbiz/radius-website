@@ -11,12 +11,12 @@ import { Toaster } from "sonner"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Radius Store | Game Enhancement Tools",
+  title: "Radius Cheats | Game Enhancement Tools",
   description: "Premium game enhancement tools and utilities for competitive gaming. Features include Fortnite enhancement, HWID spoofing, and more.",
   keywords: ["game enhancement", "gaming tools", "Fortnite enhancer", "HWID spoofer", "gaming utilities"],
-  authors: [{ name: "Radius Store" }],
-  creator: "Radius Store",
-  publisher: "Radius Store",
+  authors: [{ name: "Radius Cheats" }],
+  creator: "Radius Cheats",
+  publisher: "Radius Cheats",
   robots: {
     index: true,
     follow: true,
@@ -24,25 +24,25 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://radiusstore.com",
-    siteName: "Radius Store",
-    title: "Radius Store | Premium Game Enhancement Tools",
-    description: "Elevate your gaming experience with Radius Store's premium enhancement tools. Professional-grade utilities for competitive gaming.",
+    url: "https://radiucheats.com",
+    siteName: "Radius Cheats",
+    title: "Radius Cheats | Premium Game Enhancement Tools",
+    description: "Elevate your gaming experience Professional-grade utilities for competitive gaming.",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Radius Store Preview",
+        alt: "Radius Cheats Preview",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Radius Store | Game Enhancement Tools",
+    title: "Radius Cheats | Game Enhancement Tools",
     description: "Premium game enhancement tools and utilities for competitive gaming",
     images: ["/og-image.png"],
-    creator: "@RadiusStore",
+    creator: "@RadiusCheats",
   },
   viewport: {
     width: "device-width",
