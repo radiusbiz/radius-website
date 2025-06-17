@@ -14,6 +14,7 @@ import { useAuth } from "@/lib/firebase/authContext"
 import { useState, useEffect } from "react"
 import { toast } from "sonner"
 import React, { useRef } from "react"
+import { YouTubeEmbed } from "@/components/ui/youtube-embed"
 
 interface PricingOption {
   id: string;
@@ -417,19 +418,8 @@ function FortniteVideoPlayer() {
                 <Maximize className="h-5 w-5" />
               </button>
             </div>
-            <video
-              ref={videoRef}
-              className="w-full h-full object-cover"
-              controls={false}
-              muted={true}
-              loop={true}
-              autoPlay={true}
-              playsInline={true}
-              poster={mediaItems[selectedMedia].poster}
-            >
-              <source src={mediaItems[selectedMedia].src} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+            <YouTubeEmbed videoId="eeAJFt_h0KQ" />
+
           </>
         ) : (
           <img 
