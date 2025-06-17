@@ -2,26 +2,10 @@
 
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Volume2, VolumeX, Maximize } from "lucide-react"
-import React, { useRef, useState } from "react"
+import { ArrowRight } from "lucide-react"
+import { YouTubeEmbed } from "@/components/ui/youtube-embed"
 
 export function HeroSection() {
-  const videoRef = useRef<HTMLVideoElement>(null)
-  const [isMuted, setIsMuted] = useState(false)
-
-  const handleMute = () => {
-    const video = videoRef.current
-    if (!video) return
-    video.muted = !video.muted
-    setIsMuted(video.muted)
-  }
-
-  const handleLoadedMetadata = () => {
-    const video = videoRef.current
-    if (!video) return
-    setIsMuted(video.muted)
-  }
-
   return (
     <section className="relative min-h-screen flex items-center py-20 md:py-32">
       <div className="container relative z-20">
@@ -49,45 +33,8 @@ export function HeroSection() {
             </div>
           </div>
           <div className="flex flex-col w-full">
-            <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden bg-black shadow-lg">
-              <video
-                ref={videoRef}
-                className="w-full h-full object-cover"
-                controls={false}
-                muted={true}
-                loop={true}
-                autoPlay={true}
-                playsInline={true}
-                poster="/images/demo-video-poster.png"
-                onLoadedMetadata={handleLoadedMetadata}
-              >
-                <source src="/demo-video.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-              {/* Audio and fullscreen buttons at top right */}
-              <div className="absolute top-3 right-3 z-20 flex items-center gap-2">
-                <button onClick={handleMute} aria-label={isMuted ? "Unmute" : "Mute"} className="bg-black/80 text-white p-2 rounded-lg hover:bg-black/90 transition">
-                  {isMuted ? (
-                    <VolumeX className="h-5 w-5" />
-                  ) : (
-                    <Volume2 className="h-5 w-5" />
-                  )}
-                </button>
-                <button
-                  className="bg-black/80 text-white p-2 rounded-lg hover:bg-black/90 transition"
-                  aria-label="Fullscreen"
-                  onClick={() => {
-                    const video = videoRef.current;
-                    if (video) {
-                      if (video.requestFullscreen) video.requestFullscreen();
-                      else if ((video as any).webkitRequestFullscreen) (video as any).webkitRequestFullscreen();
-                      else if ((video as any).msRequestFullscreen) (video as any).msRequestFullscreen();
-                    }
-                  }}
-                >
-                  <Maximize className="h-5 w-5" />
-                </button>
-              </div>
+            <div className="relative w-full rounded-2xl overflow-hidden bg-black shadow-lg">
+              <YouTubeEmbed videoId="eeAJFt_h0KQ" />
             </div>
           </div>
         </div>

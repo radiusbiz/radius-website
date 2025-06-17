@@ -141,18 +141,9 @@ export function Navbar() {
               </Button>
             </>
           ) : (
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button variant="outline" size="sm" disabled className="cursor-not-allowed">
-                    Login
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>Coming Soon</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
+            <Button asChild size="sm" variant="outline">
+              <Link href="/login">Login</Link>
+            </Button>
           )}
           <ModeToggle />
         </div>
